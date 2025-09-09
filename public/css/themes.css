@@ -1,0 +1,71 @@
+/* 主題色彩系統（移植自舊版 static/css/themes.css） */
+
+/* CSS 變數定義 */
+:root {
+  --theme-primary: #fd7e14;
+  --theme-primary-rgb: 253, 126, 20;
+  --theme-primary-dark: #e8590c;
+  --theme-primary-light: #ffa94d;
+  --theme-secondary: #6c757d;
+  --theme-success: #198754;
+  --theme-info: #0dcaf0;
+  --theme-warning: #ffc107;
+  --theme-danger: #dc3545;
+  --theme-gradient: linear-gradient(135deg, #fd7e14 0%, #ffa94d 100%);
+  --theme-gradient-light: linear-gradient(135deg, #fff5f0 0%, #ffffff 100%);
+  --theme-shadow: rgba(253, 126, 20, 0.1);
+  --theme-shadow-hover: rgba(253, 126, 20, 0.2);
+  --theme-border: rgba(253, 126, 20, 0.2);
+  --theme-border-light: rgba(253, 126, 20, 0.1);
+}
+
+[data-theme="blue"] {
+  --theme-primary: #0d6efd;
+  --theme-primary-rgb: 13, 110, 253;
+  --theme-primary-dark: #0b5ed7;
+  --theme-primary-light: #6ea8fe;
+  --theme-gradient: linear-gradient(135deg, #0d6efd 0%, #6ea8fe 100%);
+  --theme-gradient-light: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  --theme-shadow: rgba(13, 110, 253, 0.1);
+  --theme-shadow-hover: rgba(13, 110, 253, 0.2);
+  --theme-border: rgba(13, 110, 253, 0.2);
+  --theme-border-light: rgba(13, 110, 253, 0.1);
+}
+
+[data-theme="green"] {
+  --theme-primary: #198754;
+  --theme-primary-rgb: 25, 135, 84;
+  --theme-primary-dark: #146c43;
+  --theme-primary-light: #75b798;
+  --theme-gradient: linear-gradient(135deg, #198754 0%, #75b798 100%);
+  --theme-gradient-light: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+  --theme-shadow: rgba(25, 135, 84, 0.1);
+  --theme-shadow-hover: rgba(25, 135, 84, 0.2);
+  --theme-border: rgba(25, 135, 84, 0.2);
+  --theme-border-light: rgba(25, 135, 84, 0.1);
+}
+
+[data-theme="gray"] {
+  --theme-primary: #6c757d;
+  --theme-primary-rgb: 108, 117, 125;
+  --theme-primary-dark: #5c636a;
+  --theme-primary-light: #adb5bd;
+  --theme-gradient: linear-gradient(135deg, #6c757d 0%, #adb5bd 100%);
+  --theme-gradient-light: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  --theme-shadow: rgba(108, 117, 125, 0.1);
+  --theme-shadow-hover: rgba(108, 117, 125, 0.2);
+  --theme-border: rgba(108, 117, 125, 0.2);
+  --theme-border-light: rgba(108, 117, 125, 0.1);
+}
+
+.navbar-dark.bg-primary { background-color: var(--theme-primary) !important; }
+.btn-primary { background-color: var(--theme-primary); border-color: var(--theme-primary); }
+.btn-primary:hover { background-color: var(--theme-primary-dark); border-color: var(--theme-primary-dark); }
+.btn-outline-primary { color: var(--theme-primary); border-color: var(--theme-primary); }
+.btn-outline-primary:hover { background-color: var(--theme-primary); border-color: var(--theme-primary); color: #fff; }
+.badge.bg-primary { background-color: var(--theme-primary) !important; }
+.text-primary { color: var(--theme-primary) !important; }
+.progress-bar.bg-success { background-color: var(--theme-primary) !important; }
+.border-primary { border-color: var(--theme-primary) !important; }
+.card:hover { box-shadow: 0 4px 12px var(--theme-shadow); }
+

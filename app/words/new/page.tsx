@@ -80,48 +80,48 @@ export default function NewWordPage() {
   }
 
   return (
-    <div style={{maxWidth: 720}}>
-      <h1>新增單字</h1>
-      <div className="card" style={{marginBottom: 16}}>
-        <div className="row" style={{alignItems: 'center'}}>
-          <div className="col"><strong>AI 快速查詢</strong></div>
-          <div className="col" style={{textAlign: 'right'}}>
-            <select className="input" style={{maxWidth: 160}} value={aiProvider} onChange={e => setAiProvider(e.target.value as any)}>
+    <div className="mx-auto" style={{maxWidth: 720}}>
+      <h1 className="h3 mb-3"><i className="bi bi-plus-circle me-2"></i>新增單字</h1>
+      <div className="card mb-3 p-3">
+        <div className="d-flex align-items-center">
+          <div className="fw-semibold">AI 快速查詢</div>
+          <div className="ms-auto">
+            <select className="form-select form-select-sm" style={{maxWidth: 160}} value={aiProvider} onChange={e => setAiProvider(e.target.value as any)}>
               <option value="openai">OpenAI</option>
               <option value="gemini">Gemini</option>
             </select>
           </div>
         </div>
-        <div className="space-x" style={{marginTop: 8}}>
-          <button className="btn" onClick={handleAiLookup} disabled={aiLoading}>{aiLoading ? '查詢中...' : '填入建議'}</button>
-          <span className="muted">需要在環境變數設定 OPENAI_API_KEY 或 GOOGLE_API_KEY</span>
+        <div className="d-flex align-items-center gap-2 mt-2">
+          <button className="btn btn-outline-primary btn-sm" onClick={handleAiLookup} disabled={aiLoading}><i className="bi bi-magic me-1"></i>{aiLoading ? '查詢中...' : '填入建議'}</button>
+          <span className="text-muted small">需要在環境變數設定 OPENAI_API_KEY 或 GOOGLE_API_KEY</span>
         </div>
       </div>
       <form className="space-y" onSubmit={handleSubmit}>
-        <div>
-          <label className="label">單字</label>
-          <input className="input" value={form.word} onChange={e => update('word', e.target.value)} required />
+        <div className="mb-3">
+          <label className="form-label">單字</label>
+          <input className="form-control" value={form.word} onChange={e => update('word', e.target.value)} required />
         </div>
-        <div>
-          <label className="label">中文意義</label>
-          <input className="input" value={form.chinese_meaning} onChange={e => update('chinese_meaning', e.target.value)} required />
+        <div className="mb-3">
+          <label className="form-label">中文意義</label>
+          <input className="form-control" value={form.chinese_meaning} onChange={e => update('chinese_meaning', e.target.value)} required />
         </div>
-        <div>
-          <label className="label">英文定義</label>
-          <input className="input" value={form.english_meaning} onChange={e => update('english_meaning', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">英文定義</label>
+          <input className="form-control" value={form.english_meaning} onChange={e => update('english_meaning', e.target.value)} />
         </div>
-        <div>
-          <label className="label">音標</label>
-          <input className="input" value={form.phonetic} onChange={e => update('phonetic', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">音標</label>
+          <input className="form-control" value={form.phonetic} onChange={e => update('phonetic', e.target.value)} />
         </div>
-        <div>
-          <label className="label">例句</label>
-          <textarea className="input" rows={3} value={form.example_sentence} onChange={e => update('example_sentence', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">例句</label>
+          <textarea className="form-control" rows={3} value={form.example_sentence} onChange={e => update('example_sentence', e.target.value)} />
         </div>
-        {error && <div className="card" style={{borderColor:'#f66', color:'#900'}}>{error}</div>}
-        <div className="space-x">
-          <button className="btn" type="button" onClick={() => history.back()}>取消</button>
-          <button className="btn primary" disabled={loading} type="submit">{loading ? '儲存中...' : '建立'}</button>
+        {error && <div className="alert alert-danger py-2">{error}</div>}
+        <div className="d-flex gap-2">
+          <button className="btn btn-outline-secondary" type="button" onClick={() => history.back()}>取消</button>
+          <button className="btn btn-primary" disabled={loading} type="submit">{loading ? '儲存中...' : '建立'}</button>
         </div>
       </form>
     </div>

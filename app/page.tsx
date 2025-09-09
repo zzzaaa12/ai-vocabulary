@@ -51,47 +51,49 @@ export default function HomePage() {
 
   return (
     <div className="space-y">
-      <h1>單字清單</h1>
-      <div className="row">
-        <div className="col">
-          <input className="input" placeholder="搜尋英文/中文/定義" value={query} onChange={e => setQuery(e.target.value)} />
-        </div>
-        <div className="col" style={{ textAlign: 'right' }}>
-          <Link className="btn primary" href="/words/new">新增單字</Link>
+      <div className="d-flex align-items-center mb-3">
+        <h1 className="h3 mb-0"><i className="bi bi-journal-text me-2"></i>單字清單</h1>
+        <div className="ms-auto d-flex align-items-center gap-2">
+          <div className="input-group">
+            <span className="input-group-text"><i className="bi bi-search"></i></span>
+            <input className="form-control" placeholder="搜尋英文/中文/定義" value={query} onChange={e => setQuery(e.target.value)} />
+          </div>
+          <Link className="btn btn-primary" href="/words/new"><i className="bi bi-plus-circle me-1"></i>新增單字</Link>
         </div>
       </div>
 
-      {loading && <div className="muted">載入中...</div>}
-      {error && <div className="muted">{error}</div>}
+      {loading && <div className="text-muted">載入中...</div>}
+      {error && <div className="alert alert-danger py-2 my-2 mb-0">{error}</div>}
 
       <div className="card">
-        <table className="table">
-          <thead>
-            <tr>
-              <th style={{width: '25%'}}>單字</th>
-              <th style={{width: '20%'}}>音標</th>
-              <th>中文意義</th>
-              <th style={{width: '120px'}}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map(w => (
-              <tr key={w.id}>
-                <td style={{fontWeight: 600}}>{w.word}</td>
-                <td className="muted">{w.phonetic || ''}</td>
-                <td>{w.chinese_meaning}</td>
-                <td>
-                  <Link href={`/words/${w.id}`} className="btn">編輯</Link>
-                </td>
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0">
+            <thead className="table-light">
+              <tr>
+                <th style={{width: '25%'}}>單字</th>
+                <th style={{width: '20%'}}>音標</th>
+                <th>中文意義</th>
+                <th style={{width: '120px'}}></th>
               </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr><td colSpan={4} className="muted">無資料</td></tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filtered.map(w => (
+                <tr key={w.id}>
+                  <td className="fw-semibold text-primary">{w.word}</td>
+                  <td className="text-muted">{w.phonetic || ''}</td>
+                  <td>{w.chinese_meaning}</td>
+                  <td className="text-end">
+                    <Link href={`/words/${w.id}`} className="btn btn-outline-primary btn-sm"><i className="bi bi-pencil-square me-1"></i>編輯</Link>
+                  </td>
+                </tr>
+              ))}
+              {filtered.length === 0 && (
+                <tr><td colSpan={4} className="text-muted">無資料</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
 }
-

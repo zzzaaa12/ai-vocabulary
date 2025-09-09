@@ -85,17 +85,23 @@ export default function ReviewPage() {
 
   return (
     <div className="space-y">
-      <div className="row" style={{alignItems: 'center'}}>
-        <h1 style={{margin: 0}}>隨機複習</h1>
-        <div style={{marginLeft: 'auto'}} className="space-x">
-          <label><input type="checkbox" checked={showPhonetic} onChange={e => setShowPhonetic(e.target.checked)} /> 顯示音標</label>
-          <label><input type="checkbox" checked={showMeaning} onChange={e => setShowMeaning(e.target.checked)} /> 顯示中文</label>
-          <button className="btn" onClick={toggleAll}>{hiddenAll ? '全部顯示' : '全部隱藏'}</button>
+      <div className="d-flex align-items-center mb-2">
+        <h1 className="h3 mb-0"><i className="bi bi-shuffle me-2"></i>隨機複習</h1>
+        <div className="ms-auto d-flex align-items-center gap-3">
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" id="showPh" checked={showPhonetic} onChange={e => setShowPhonetic(e.target.checked)} />
+            <label className="form-check-label" htmlFor="showPh">顯示音標</label>
+          </div>
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" id="showZh" checked={showMeaning} onChange={e => setShowMeaning(e.target.checked)} />
+            <label className="form-check-label" htmlFor="showZh">顯示中文</label>
+          </div>
+          <button className="btn btn-outline-primary btn-sm" onClick={toggleAll}><i className="bi bi-eye me-1"></i>{hiddenAll ? '全部顯示' : '全部隱藏'}</button>
         </div>
       </div>
 
-      <div className="muted">第 {batchIndex + 1} 批（{rangeStart}-{rangeEnd} / {words.length}）</div>
-      <div className="card">
+      <div className="text-muted">第 {batchIndex + 1} 批（{rangeStart}-{rangeEnd} / {words.length}）</div>
+      <div className="card p-2">
         <div className="review-grid">
           {currentBatch.map(w => (
             <div key={w.id} className="review-row" data-word-id={w.id}>
@@ -106,29 +112,28 @@ export default function ReviewPage() {
               <div style={{display: showMeaning ? 'block' : 'none'}}>
                 <span className={`meaning ${hiddenAll ? 'hidden-content' : ''}`} onClick={(e) => toggleReveal(e.currentTarget as any)}>{w.chinese_meaning}</span>
               </div>
-              <div style={{textAlign: 'right'}}>
-                <span className={`star ${difficult[w.id] ? 'marked' : ''}`} onClick={() => markDifficult(w.id)}>★</span>
+              <div className="text-end">
+                <span className={`star ${difficult[w.id] ? 'marked' : ''}`} onClick={() => markDifficult(w.id)} title="標記為困難">★</span>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="row" style={{alignItems: 'center'}}>
-        <div>困難標記：{difficultCount}</div>
-        <div style={{marginLeft: 'auto'}} className="space-x">
-          <button className="btn" disabled={batchIndex === 0} onClick={() => setBatchIndex(b => Math.max(0, b - 1))}>上一批</button>
-          <button className="btn primary" disabled={batchIndex >= totalBatches - 1} onClick={() => setBatchIndex(b => Math.min(totalBatches - 1, b + 1))}>下一批</button>
+      <div className="d-flex align-items-center">
+        <div className="me-auto">困難標記：{difficultCount}</div>
+        <div className="d-flex gap-2">
+          <button className="btn btn-outline-secondary" disabled={batchIndex === 0} onClick={() => setBatchIndex(b => Math.max(0, b - 1))}>上一批</button>
+          <button className="btn btn-primary" disabled={batchIndex >= totalBatches - 1} onClick={() => setBatchIndex(b => Math.min(totalBatches - 1, b + 1))}>下一批</button>
         </div>
       </div>
 
-      <div className="card">
-        <div className="muted">進度</div>
-        <div style={{height: 8, background: '#eee', borderRadius: 4}}>
-          <div style={{width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg, #28a745, #20c997)'}} />
+      <div className="card p-3">
+        <div className="text-muted mb-1">進度</div>
+        <div className="progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
+          <div className="progress-bar bg-success" style={{width: `${progress}%`}}></div>
         </div>
       </div>
     </div>
   );
 }
-

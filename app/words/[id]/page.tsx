@@ -85,38 +85,38 @@ export default function EditWordPage() {
   if (loading) return <div className="muted">載入中...</div>;
 
   return (
-    <div style={{maxWidth: 720}}>
-      <h1>編輯單字</h1>
-      {error && <div className="card" style={{borderColor:'#f66', color:'#900'}}>{error}</div>}
+    <div className="mx-auto" style={{maxWidth: 720}}>
+      <h1 className="h3 mb-3"><i className="bi bi-pencil-square me-2"></i>編輯單字</h1>
+      {error && <div className="alert alert-danger py-2">{error}</div>}
       <div className="space-y">
-        <div>
-          <label className="label">單字</label>
-          <input className="input" value={form.word} onChange={e => update('word', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">單字</label>
+          <input className="form-control" value={form.word} onChange={e => update('word', e.target.value)} />
         </div>
-        <div>
-          <label className="label">中文意義</label>
-          <input className="input" value={form.chinese_meaning} onChange={e => update('chinese_meaning', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">中文意義</label>
+          <input className="form-control" value={form.chinese_meaning} onChange={e => update('chinese_meaning', e.target.value)} />
         </div>
-        <div>
-          <label className="label">英文定義</label>
-          <input className="input" value={form.english_meaning} onChange={e => update('english_meaning', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">英文定義</label>
+          <input className="form-control" value={form.english_meaning} onChange={e => update('english_meaning', e.target.value)} />
         </div>
-        <div>
-          <label className="label">音標</label>
-          <input className="input" value={form.phonetic} onChange={e => update('phonetic', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">音標</label>
+          <input className="form-control" value={form.phonetic} onChange={e => update('phonetic', e.target.value)} />
         </div>
-        <div>
-          <label className="label">例句</label>
-          <textarea className="input" rows={3} value={form.example_sentence} onChange={e => update('example_sentence', e.target.value)} />
+        <div className="mb-3">
+          <label className="form-label">例句</label>
+          <textarea className="form-control" rows={3} value={form.example_sentence} onChange={e => update('example_sentence', e.target.value)} />
         </div>
-        <div>
-          <label className="label">困難標記</label>
-          <input type="checkbox" checked={form.is_difficult} onChange={e => update('is_difficult', e.target.checked)} /> 標為困難
+        <div className="form-check mb-3">
+          <input id="chkDiff" className="form-check-input" type="checkbox" checked={form.is_difficult} onChange={e => update('is_difficult', e.target.checked)} />
+          <label className="form-check-label" htmlFor="chkDiff">標為困難</label>
         </div>
-        <div className="space-x">
-          <button className="btn" onClick={() => history.back()}>返回</button>
-          <button className="btn primary" onClick={handleSave}>儲存</button>
-          <button className="btn warning" onClick={handleDelete}>刪除</button>
+        <div className="d-flex gap-2">
+          <button className="btn btn-outline-secondary" onClick={() => history.back()}>返回</button>
+          <button className="btn btn-primary" onClick={handleSave}>儲存</button>
+          <button className="btn btn-warning" onClick={handleDelete}><i className="bi bi-trash me-1"></i>刪除</button>
         </div>
       </div>
     </div>

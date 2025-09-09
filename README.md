@@ -1,60 +1,60 @@
 # ai-vocabulary-review
 
-一個以 Flask 打造的英文單字筆記本與隨機複習工具，內建 AI 產生單字資訊（OpenAI/Gemini），支援主題切換、篩選、搜尋與進度統計。
+一?�以 Flask ?�造�??��??��?筆�??��??��?複�?工具，內�?AI ?��??��?資�?（OpenAI/Gemini）�??�援主�??��??�篩?�、�?尋�??�度統�???
 
-## 特色功能
-- 主題系統：橘/藍/綠/灰主題即時切換，整站色彩統一
-- AI 快速查詢：輸入單字即自動生成中文、英文定義、音標、例句、同反義詞
-- 單字管理：新增、編輯、刪除、搜尋、時間篩選、列表瀏覽
-- 隨機複習：卡片式複習介面，支援翻轉、上一個/下一個、鍵盤快捷鍵
-- 統計資訊：近三天/一週/一個月等數據與進度條顯示
+## ?�色?�能
+- 主�?系統：�?/??�??�主題即?��??��??��??�彩統�?
+- AI 快速查詢�?輸入?��??�自?��??�中?�、英?��?義、音標、�??�、�??�義�?
+- ?��?管�?：新增、編輯、刪?�、�?尋、�??�篩?�、�?表瀏覽
+- ?��?複�?：卡?��?複�?介面，支?�翻轉、�?一??下�??�、鍵?�快?�鍵
+- 統�?資�?：�?三天/一??一?��?等數?��??�度條顯�?
 
-## Demo 截圖（可選）
-- 首頁：AI 快速查詢、單字列表、時間篩選
-- 隨機複習：卡片翻轉與控制按鈕（置於頁面內容結尾，footer 上方）
+## Demo ?��?（可?��?
+- 首�?：AI 快速查詢、單字�?表、�??�篩??
+- ?��?複�?：卡?�翻轉�??�制?��?（置?��??�內容�?尾�?footer 上方�?
 
-## 安裝需求
+## 安�??��?
 - Python 3.8+
 - pip
 
-## 快速開始
+## 快速�?�?
 ```bash
-# 1) 建立虛擬環境並安裝套件
+# 1) 建�??�擬?��?並�?裝�?�?
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# 2) （可選）設定 AI API（OpenAI / Google Gemini）
+# 2) （可?��?設�? AI API（OpenAI / Google Gemini�?
 python config/setup_api.py
 
-# 3) （可選）生成 SSL 憑證以啟用 HTTPS
+# 3) （可?��??��? SSL ?��?以�???HTTPS
 python scripts/generate_ssl_cert.py
 
-# 4) 啟動開發伺服器
+# 4) ?��??�發伺�???
 $env:FLASK_APP='app.py'
 .\.venv\Scripts\python.exe app.py
-# HTTP 模式: http://0.0.0.0:8080
-# HTTPS 模式: https://0.0.0.0:8080 (如有 SSL 憑證)
+# HTTP 模�?: http://0.0.0.0:8080
+# HTTPS 模�?: https://0.0.0.0:8080 (如�? SSL ?��?)
 ```
 
-## 使用說明
-- 首頁 `AI 快速查詢`：
-  - 輸入英文單字 → 按「AI 查詢」→ 顯示結果於 Modal，可直接儲存為單字
-- 單字列表：
-  - 右上角提供時間篩選標籤與搜尋列
-  - 點選單字可查看詳細資料頁面
-- 隨機複習：
-  - 導覽列點擊「隨機複習」
-  - 以卡片方式瀏覽；空白鍵/Enter 翻面、左右方向鍵切換上一個/下一個
+## 使用說�?
+- 首�? `AI 快速查詢`�?
+  - 輸入?��??��? ???�「AI ?�詢?��? 顯示結�???Modal，可?�接?��??�單�?
+- ?��??�表�?
+  - ?��?角�?供�??�篩?��?籤�??��???
+  - 點選?��??�查?�詳細�??��???
+- ?��?複�?�?
+  - 導覽?��??�「隨機�?習�?
+  - 以卡?�方式瀏覽；空?�鍵/Enter 翻面?�左?�方?�鍵?��?上�???下�???
 
-## 設定 AI API（可選）
-使用互動式設定工具：
+## 設�? AI API（可?��?
+使用互�?式設定工?��?
 ```bash
 python config/setup_api.py
 ```
-- 設定 OpenAI/Gemini API Key（安全加密儲存於 `config/api_keys.json`）
-- 選擇使用模型、預設提供商、超時時間與重試次數
+- 設�? OpenAI/Gemini API Key（�??��?密儲存於 `config/api_keys.json`�?
+- ?��?使用模�??��?設�?供�??��??��??��??�試次數
 
-程式化呼叫：
+程�??�呼?��?
 ```python
 from config.api_config import api_config
 api_config.set_openai_api_key('sk-...')
@@ -62,20 +62,20 @@ api_config.set_gemini_api_key('AIzaSy...')
 api_config.set_default_provider('openai')
 ```
 
-## 專案結構
+## 專�?結�?
 ```
 mydict_webapp_0820_cursor/
-├─ app.py                      # Flask 主要入口與路由
-├─ config/
-│  ├─ api_config.py           # AI 設定管理與加密
-│  └─ setup_api.py            # 互動式設定工具
-├─ models/                    # 資料模型（Word 等）
-├─ services/                  # 業務邏輯（單字、AI 服務）
-├─ templates/                 # Jinja2 模板（含主題化的 UI）
-├─ static/
-│  └─ css/themes.css          # 主題系統與顏色變數
-├─ requirements.txt
-└─ LICENSE
+?��? app.py                      # Flask 主�??�口?�路??
+?��? config/
+?? ?��? api_config.py           # AI 設�?管�??��?�?
+?? ?��? setup_api.py            # 互�?式設定工??
+?��? models/                    # 資�?模�?（Word 等�?
+?��? services/                  # 業�??�輯（單字、AI ?��?�?
+?��? templates/                 # Jinja2 模板（含主�??��? UI�?
+?��? static/
+?? ?��? css/themes.css          # 主�?系統?��??��???
+?��? requirements.txt
+?��? LICENSE
 ```
 
 ## 測試
@@ -83,41 +83,111 @@ mydict_webapp_0820_cursor/
 python -m pytest -q
 ```
 
-## HTTPS 支援
-本專案內建 HTTPS 支援，提供安全的加密連線。
+## HTTPS ?�援
+?��?案內�?HTTPS ?�援，�?供�??��??��??????
 
-### SSL 憑證設定
-1. **自動生成自簽名憑證（開發/測試）**：
+### SSL ?��?設�?
+1. **?��??��??�簽?��?證�??�發/測試�?*�?
    ```bash
    python scripts/generate_ssl_cert.py
    ```
 
-2. **使用現有憑證**：
-   - 將憑證檔案放在 `certs/cert.pem`
-   - 將私鑰檔案放在 `certs/key.pem`
+2. **使用?��??��?**�?
+   - 將�?證�?案放??`certs/cert.pem`
+   - 將�??��?案放??`certs/key.pem`
 
-3. **伺服器設定**：
-   - 訪問 `/settings/server` 進行 HTTPS 配置
-   - 支援自訂主機位址、連接埠、憑證路徑
-   - 可啟用強制 HTTPS 重新導向
+3. **伺�??�設�?*�?
+   - 訪�? `/settings/server` ?��? HTTPS ?�置
+   - ?�援?��?主�?位�??��?��?�、�?證路�?
+   - ?��??�強??HTTPS ?�新導�?
 
-### 安全功能
-- SSL/TLS 加密連線
-- 強制 HTTPS 重新導向
-- 支援監聽 0.0.0.0（所有網路介面）
-- 憑證檔案自動檢測與驗證
+### 安全?�能
+- SSL/TLS ?��????
+- 強制 HTTPS ?�新導�?
+- ?�援??�� 0.0.0.0（�??�網路�??��?
+- ?��?檔�??��?檢測?��?�?
 
-## 部署（簡易）
-- 使用反向代理（Nginx）與生產 WSGI（gunicorn/waitress 等）啟動
-- 設定環境變數 `SECRET_KEY`，確保 `config/` 下的金鑰與設定檔具備寫入權限
-- 生產環境建議使用受信任的 CA 憑證（如 Let's Encrypt）
+## ?�署（簡?��?
+- 使用?��?�??（Nginx）�??�產 WSGI（gunicorn/waitress 等�??��?
+- 設�??��?變數 `SECRET_KEY`，確�?`config/` 下�??�鑰?�設定�??��?寫入權�?
+- ?�產?��?建議使用?�信任�? CA ?��?（�? Let's Encrypt�?
 
-## 授權 License
-MIT License，詳見 `LICENSE`。
+## ?��? License
+MIT License，詳�?`LICENSE`??
 
 ## 貢獻
-歡迎 issue / PR。提交前請：
-- 遵守既有程式風格
-- 確保單元測試通過
+歡�? issue / PR?��?交�?請�?
+- ?��??��?程�?風格
+- 確�??��?測試?��?
 
 
+
+## Vercel + Supabase ���p�]JavaScript �����A���A�ϥ� Python�^
+
+���M�פw�s�W Next.js + Supabase ���e��ݡ]�L���A���^�����A��K�@�䳡�p�� Vercel�A����x�s�P�n�J��� Supabase�C
+
+### �[�c����
+- �e�ݮج[�GNext.js�]Vercel ��ͤ䴩�^
+- �{��/��Ʈw�GSupabase�]email magic link �n�J + Postgres + RLS�^
+- �D�n�\��G
+  - ��r�M��/�j�M�]�����^
+  - �s�W/�s��/�R����r
+  - �Ʋߤ����]�妸�B����/��ܡB�x���аO�^
+
+### �M�צ�m
+- Next.js �{���X��b�ڥؿ��]`package.json`�B`app/` ���^�C
+- Supabase schema SQL�G`supabase.sql`
+- �e�ݳ]�w�ɡG`next.config.mjs`�B`.env.example`
+
+### ���p�B�J
+1) �إ� Supabase �M�סA���o�H�U�����ܼơG
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+2) �b Supabase SQL �s�边�����ƪ�/����
+- ���} Supabase �M�� �� SQL �� New query
+- �K�W `supabase.sql` ���e�ð���A�إ� `words` ���P RLS �F��
+
+3) �����}�o�]�i��^
+```bash
+# Node 18+
+cp .env.example .env.local
+# ��J������ Supabase �ܼ�
+npm install
+npm run dev
+# �s�� http://localhost:3000
+```
+
+4) ���p�� Vercel
+- �s�W�M�� �� Import �� repo
+- �b Vercel �M�ת� Settings �� Environment Variables�G
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `NEXT_PUBLIC_SITE_URL`�]�Ҧp https://�A����W �^
+- Deploy�]Vercel �|�۰ʰ��� Next.js�^
+
+### �ϥΤ覡�]�s���^
+- �����G��ܳ�r�M��A�i�j�M�F�I�u�s�W��r�v�إ߸�ơC
+- �Ʋ߭� `/review`�G
+  - �H 20 �����@�妸�A�䴩��������/��ܡB����/�����������C
+  - �i�N��r�аO���u�x���v�]�|�^�g���ƪ��� `is_difficult`�^�C
+- �n�J�� `/login`�G��J email �����n�J�s���]magic link�^�C
+
+### �`�N�ƶ�
+- �o�� Next.js �����P�� Flask ���P�w�æs�AVercel �u�|�� `package.json` �ظm Next.js�A���A�ϥ� Python�C
+- �Y�n�ɤJ AI �d�ߡ]OpenAI/Gemini�^�A��ĳ�s�W Next.js Route Handler �@�����A���ݥN�z�åH�����ܼƦs�� API Key�]�ثe�����ء^�C
+
+
+
+### �i���GAI �ֳt�d�ߡ]�i��^
+- �s�W�F POST /api/ai�A�䴩 provider: openai �� gemini`n- �ݦb Vercel/���������ܼƳ]�w�GOPENAI_API_KEY �� GOOGLE_API_KEY`n- �s�W��r�����uAI �ֳt�d�ߡv���s�|�I�s�� API �æ۰ʶ�J���
+
+### �פJ�¸�ơ]�i��^
+- �Y���� data/vocabulary.json ���¸�ơA�i�ΪA�Ȫ��_�妸�פJ�G
+`ash
+# �ݥ��� Supabase �إߨϥΪ̡]�i�� Magic Link �n�J�@�����͡^����o user_id
+set SUPABASE_URL=... 
+set SUPABASE_SERVICE_ROLE_KEY=...
+set IMPORT_TARGET_USER_ID=<your_supabase_user_id>
+npm run import:json
+``n- �`�N�GRLS �|���\ Service Role �g�J���N user_id�F�ȨѶפJ�@�~�ϥΡA�Ŧb�e���n�������_�C
